@@ -6,8 +6,8 @@ async function scrapeItem(url) {
 	const page = await browser.newPage();
 	await page.goto(url);
 
-	const [el] = await page.$x('/html/body/section[2]/div/div[1]/div[1]/dl/dd/span');
-	const text = await el.getProperty('class')
+	const [el] = await page.$x('/html/body/section[1]/div[2]/div/div/div[1]/div/img');
+	const text = await el.getProperty('src')
 	const textTXT = await text.jsonValue();
 
 	console.log({textTXT});
