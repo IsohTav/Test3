@@ -10,7 +10,7 @@ async function scrapeItem(url) {
 	const text = await el.getProperty('p')
 	const textTXT = await text.jsonValue();
 
-	cnsole.log({textTXT});
+	console.log({textTXT});
 }
 
 scrapeItem('https://www.onlinejobs.ph/jobseekers/info/248015')
