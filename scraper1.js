@@ -1,7 +1,5 @@
 const puppeteer = require('puppeteer');
 const express = require('express');
-const app = express();
-
 
 app.post('/test1', function(req,res){
 	return res.redirect('https://www.youtube.com/watch?v=0tOgMSEPFRs');
@@ -10,12 +8,12 @@ app.post('/test1', function(req,res){
 
 async function scrapeItem(url) {
 	
-	const browser = await puppeteer.launch();
+	const browser = await puppeteer.launch({headless: true, args:['--no-sandbox']});
 	const page = await browser.newPage();
 	await page.goto(url);
 
 	const [el] = await page.$x('/html/body/section[2]/div/div[1]/div[1]/dl/dd/span');
-	const text = await el.getProperty('p')
+	const text = await el.getProperty('textContent');
 	const textTXT = await text.jsonValue();
 
 	cnsole.log({textTXT});
